@@ -160,6 +160,7 @@ subroutine GetStat()
    do ic = 1, nc
       imean(1:3) = imean(1:3) + cluster(ic)%pos%coord(1:3)
    end do
+   rg = 0.0d0
    rmean(1:3) = real(imean(1:3))/real(nc)
    do ic = 1, nc
       rg = rg + sum((real(cluster(ic)%pos%coord(1:3)) - rmean(1:3))**2)
