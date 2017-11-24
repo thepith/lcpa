@@ -1,23 +1,24 @@
 program llimag
 
+   use TypeDefModule
    use SystemModule
    use ParticleModule
    implicit none
-   integer(4) :: systemSize = 33
-   integer(4) :: particleNumber = 156
-   integer(4) :: nstep = 100000
-   integer(4) :: iimage
+   integer(intSingle) :: systemSize = 33
+   integer(intSingle) :: particleNumber = 156
+   integer(intSingle) :: nstep = 100000
+   integer(intSingle) :: iimage
 
-   integer(4) :: istep, ipStep, ipMove
-   real(8) :: dT
+   integer(intSingle) :: istep, ipStep, ipMove
+   real(realSingle) :: dT
    logical :: lsuccess
    logical :: limage = .false.
    logical :: lstat = .true.
-   integer(4) :: timeInterval = 100
+   integer(intSingle) :: timeInterval = 100
 
 
-   real(8) :: rprob = 1.0
-   real(8) :: r(1)
+   real(realSingle) :: rprob = 1.0
+   real(realSingle) :: r(1)
    integer :: n = 12, i
    integer :: seed(12)
    integer :: iseed = 1

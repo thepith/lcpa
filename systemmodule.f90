@@ -1,35 +1,36 @@
 module SystemModule
 
+use TypeDefModule
 implicit none
 private
 public cells, cell_type, InitCells, ncell, nneighcell
 
-integer(4), parameter    :: nneighcell = 6     ! number of neighbouring cells (dim = 3)
+integer(intSingle), parameter    :: nneighcell = 6     ! number of neighbouring cells (dim = 3)
 
 type cell_pointer_array
    type(cell_type), pointer              :: p => null()        ! pointer to a cell, usefull to create an array of pointers
 end type cell_pointer_array
 
 type cell_type
-   integer(4)               :: id                 ! for easy recognition
+   integer(intSingle)               :: id                 ! for easy recognition
    logical :: lOccupied ! is the cell occupied?
    logical :: lCluster ! is the cell part of the cluster?
    type(cell_pointer_array) :: neighcell(nneighcell)       ! pointer to the neighbouring cells
-   integer(4) :: coord(3)
+   integer(intSingle) :: coord(3)
 end type cell_type
 
 type(cell_type), target, allocatable     :: cells(:,:,:)        ! cells
-integer(4)                               :: ncell = 0       ! number of cells in x y z in each octant
+integer(intSingle)                               :: ncell = 0       ! number of cells in x y z in each octant
 
 contains
 
 subroutine InitCells(edgeLen)
    implicit none
-   integer(4), intent(in) :: edgeLen
-   integer(4) :: ix, iy, iz
-   integer(4) :: ineigh, direction, magnitude, neigh(3)
+   integer(intSingle), intent(in) :: edgeLen
+   integer(intSingle) :: ix, iy, iz
+   integer(intSingle) :: ineigh, direction, magnitude, neigh(3)
    type(cell_type), pointer              :: icell      ! pointer to the cell
-   integer(4) :: center
+   integer(intSingle) :: center
 
    ncell = edgeLen
    allocate(cells(0:(ncell-1),0:(ncell-1),0:(ncell-1)))
